@@ -1,0 +1,18 @@
+
+.Slider1 {
+    min-height: 768px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-image: url('../../Pictures/bg1.png');
+    background-size: contain
+}
+
+.home_button {
+    margin-top: 2rem;
+}
+
+
+.onpoint {
+    margin-top: 80px;
+}

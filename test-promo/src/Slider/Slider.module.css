@@ -1,0 +1,57 @@
+.slider {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 50px 10px 0;
+    /* Чтобы во время перетаскивания слайда ничего не выделить внутри него */
+    user-select: none;
+    /* Чтобы запретить скролл страницы, если мы начали двигать слайдер по оси X */
+    touch-action: pan-y;
+}
+.slider img {
+    pointer-events: none;
+
+}
+.sliderList {
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+}
+
+.sliderList.grab {
+    cursor: grab;
+}
+.sliderList.grabbing {
+    cursor: grabbing;
+}
+
+.sliderTrack {
+    display: flex;
+
+}
+.sliderItem{
+
+    width: 200px;
+    height: 200px;
+    display: block;
+    flex-shrink: 0;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    border: 1px solid #000;
+}
+
+.sliderArrows {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.next,
+.prev {
+    background: none;
+    border: none;
+    margin: 0 10px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
