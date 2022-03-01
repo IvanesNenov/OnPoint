@@ -1,15 +1,21 @@
 
 .Slider1 {
-    min-height: 768px;
+    height: 768px;
+    width: 1024px;
     display: flex;
+    padding-left: 60px;
     flex-direction: column;
-    justify-content: space-around;
-    background-image: url('../../Pictures/bg2.png');
+    justify-content: space-between;
+    background-image: url('../../Pictures/onpoint2.gif');
     background-size: contain
 }
-
+.Slider1 button{
+    border: none;
+    background: none;
+}
 .home_button {
-    margin-top: 2rem;
+    margin-top: 20px;
+    display: block;
 }
 
 

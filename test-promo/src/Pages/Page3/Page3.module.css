@@ -1,0 +1,29 @@
+
+.Slider1 {
+    height: 768px;
+    width: 1024px;
+    display: flex;
+    padding-left: 60px;
+    flex-direction: column;
+    justify-content: space-between;
+    background-image: url('../../Pictures/onpoint000.gif');
+    background-size: contain
+}
+.Slider1 button{
+    border: none;
+    background: none;
+}
+.home_button {
+    margin-top: 20px;
+    display: block;
+}
+
+
+.onpoint {
+    margin-top: 0px;
+}
+
+.add {
+    align-self: end;
+    margin-right: 150px;
+}

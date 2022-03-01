@@ -1,8 +1,8 @@
 .slider {
     position: relative;
-    width: 200px;
-    height: 200px;
-    margin: 50px 10px 0;
+    width: 1024px;
+    height: 768px;
+    margin: 0px 0px 0;
     /* Чтобы во время перетаскивания слайда ничего не выделить внутри него */
     user-select: none;
     /* Чтобы запретить скролл страницы, если мы начали двигать слайдер по оси X */
@@ -13,17 +13,17 @@
 
 }
 .sliderList {
-    width: 200px;
-    height: 200px;
+    width: 1024px;
+    height: 768px;
     overflow: hidden;
 }
 
-.sliderList.grab {
-    cursor: grab;
-}
-.sliderList.grabbing {
-    cursor: grabbing;
-}
+/*.sliderList.grab {*/
+/*    cursor: grab;*/
+/*}*/
+/*.sliderList.grabbing {*/
+/*    cursor: grabbing;*/
+/*}*/
 
 .sliderTrack {
     display: flex;
@@ -31,8 +31,8 @@
 }
 .sliderItem{
 
-    width: 200px;
-    height: 200px;
+    width: 1024px;
+    height: 768px;
     display: block;
     flex-shrink: 0;
     justify-content: center;

@@ -1,0 +1,32 @@
+
+.Slider1 {
+    height: 768px;
+    width: 1024px;
+    display: flex;
+    padding-left: 60px;
+    flex-direction: column;
+    justify-content: space-between;
+
+    background-size: contain
+}
+
+.Slider1.one {
+    background-image: url('../Pictures/onpoint0.gif');
+}
+.Slider1.two {
+    background-image: url('../Pictures/onpoint2.gif');
+}
+
+.Slider1 button{
+    border: none;
+    background: none;
+}
+.home_button {
+    margin-top: 20px;
+    display: block;
+}
+
+
+/*.onpoint {*/
+/*    margin-top: 80px;*/
+/*}*/

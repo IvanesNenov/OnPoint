@@ -1,25 +1,22 @@
-import React, {useEffect, useRef} from 'react'
+import React, {useEffect, useRef, useState} from 'react'
 import classes from './Slider.module.css'
-
+import Page1 from "../Pages/Page1/Page1";
+import Page2 from "../Pages/Page2/Page2";
+import Page3 from "../Pages/Page3/Page3";
+import Layout from "../hoc/Layout";
+import Page4 from "../Pages/Page4/Page4";
 
 const Slider = () => {
-    // const [posX1, setPosX1] = useState(0)
+
     const posX1 = useRef(0)
-    // const [posInit, setPosInit] = useState(0)
     const posInit = useRef(0)
-    // const [posX2, setPosX2] = useState(0)
     const posX2 = useRef(0)
-    // const [posFinal, setPosFinal] = useState(0)
     const posFinal = useRef(0)
-    const slideWidth = 200   //ширина слайда
-    const posThreshold = slideWidth * 0.3
+    const slideWidth = 1024   //ширина слайда
+    const posThreshold = slideWidth * 0.2
     const slideIndex = useRef(0)
     let transformation = 0
     let sliderTrack = useRef()
-    // const stylesTrack = useRef({
-    //     transform: 'translate3d(0px, 0px, 0px)',
-    //     transition: 'transform .5s'
-    // })
     const stylesTrack = {
         transform: 'translate3d(-0px, 0px, 0px)',
         transition: ''
@@ -82,6 +79,12 @@ const Slider = () => {
         document.removeEventListener('touchend', swipeEnd);
     }
 
+    const addition = useRef(false)
+    const onAddition = () => {
+        console.log(addition.current)
+        addition.current= !addition.current
+    }
+
 
     useEffect(() => {
         document.addEventListener("touchstart", event => swipeStart(event))
@@ -94,23 +97,35 @@ const Slider = () => {
                      className={classes.sliderTrack}
                      style={sliderTrack.current ? sliderTrack.current.style : stylesTrack}>
                     <div className={classes.sliderItem}>
-                        1
+                        <Page1
+                            onBegin={BeginHandler}
+                            onNext={nextHandler}
+                        />
                     </div>
                     <div className={classes.sliderItem}>
-                        2
+                        <Page2
+                            onBegin={BeginHandler}
+                        />
                     </div>
                     <div className={classes.sliderItem}>
-                        3
+                        {addition ?
+                            <Page3 onBegin={BeginHandler}
+                                   onAddition={onAddition}
+                            /> :
+                            <Page4/>
+                        }
+
+
                     </div>
-                    <div className={classes.sliderItem}>
-                        4
-                    </div>
+                    {/*<div className={classes.sliderItem}>*/}
+                    {/*    4*/}
+                    {/*</div>*/}
                 </div>
             </div>
-            <div className={classes.sliderArrow}>
-                <button type="button" className={classes.prev} onClick={BeginHandler}>&larr;</button>
-                <button type="button" className={classes.next} onClick={nextHandler}>&rarr;</button>
-            </div>
+            {/*<div className={classes.sliderArrow}>*/}
+            {/*    <button type="button" className={classes.prev} onClick={BeginHandler}>&larr;</button>*/}
+            {/*    <button type="button" className={classes.next} onClick={nextHandler}>&rarr;</button>*/}
+            {/*</div>*/}
         </div>
     )
 }

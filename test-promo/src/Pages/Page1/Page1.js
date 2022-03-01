@@ -3,21 +3,21 @@ import classes from './Page1.module.css'
 import home_project from '../../Pictures/home_project.png'
 
 import onpoint from '../../Pictures/onpoint.png'
-import Text from "./Decoration/Text";
+import Text1 from "./Text1";
 
-const Page1 = () => {
-
+const Page1 = (props) => {
     return (
         <div className={classes.Slider1}>
-            <div style={{marginLeft: '20px'}}>
+                <button onClick={props.onBegin}>
+                    <img className={classes.home_button} width="150" src={home_project} alt="home"/>
+                </button>
 
-                <img className={classes.home_button} width="204" height="34" src={home_project} alt="home"/>
-                <Text/>
+
+                <Text1 onNext ={props.onNext}/>
 
                 <div className={classes.onpoint}>
-                    <img height="10" src={onpoint} alt="continue"/>
+                    <img height="15" src={onpoint} alt="continue"/>
                 </div>
-            </div>
         </div>
     )
 }
