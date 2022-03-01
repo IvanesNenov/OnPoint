@@ -7,11 +7,12 @@ import Layout from "../hoc/Layout";
 import Page4 from "../Pages/Page4/Page4";
 
 const Slider = () => {
-
+    const allowSwipe = useRef(true)
     const posX1 = useRef(0)
     const posInit = useRef(0)
     const posX2 = useRef(0)
     const posFinal = useRef(0)
+    const slideLength = 3
     const slideWidth = 1024   //ширина слайда
     const posThreshold = slideWidth * 0.2
     const slideIndex = useRef(0)
@@ -29,9 +30,8 @@ const Slider = () => {
 
 
         if (!sliderTrack.current.style.transition) {
-            sliderTrack.current.style.transition = 'transform 1s'
+            sliderTrack.current.style.transition = 'transform .5s'
         }
-
         sliderTrack.current.style.transform = `translate3d(-${slideIndex.current * slideWidth}px, 0px, 0px)`
 
 
@@ -46,11 +46,15 @@ const Slider = () => {
     }
 
     const swipeStart = (event) => {
-        posInit.current = event.touches[0].clientX
-        posX1.current = event.touches[0].clientX
-        sliderTrack.current.style.transition = ''
-        document.addEventListener('touchmove', event => swipeAction(event))
-        document.addEventListener('touchend', swipeEnd)
+        if (allowSwipe) {
+            posInit.current = event.touches[0].clientX
+            posX1.current = event.touches[0].clientX
+            sliderTrack.current.style.transition = ''
+            document.addEventListener('touchmove', event => swipeAction(event))
+            document.addEventListener('touchend', swipeEnd)
+        }
+
+
     }
 
     const swipeAction = (event) => {
@@ -58,6 +62,27 @@ const Slider = () => {
         transformation = Number(styleCurrent.match(trfRegExp)[0])
         posX2.current = posX1.current - event.touches[0].clientX
         posX1.current = event.touches[0].clientX
+
+
+        if (slideIndex.current === 0) {
+            if (posInit.current < posX1.current) {
+                sliderTrack.current.style.transform = `translate3d(0px, 0px, 0px)`
+                allowSwipe.current = false
+                return
+            } else {
+                allowSwipe.current = true
+            }
+        }
+
+        if (slideIndex.current === slideLength - 1) {
+            if (posInit.current > posX1.current) {
+                sliderTrack.current.style.transform = `translate3d(-${(slideLength - 1) * slideWidth}px, 0px, 0px)`
+                allowSwipe.current = false
+                return
+            } else {
+                allowSwipe.current = true
+            }
+        }
         sliderTrack.current.style.transform = `translate3d(${transformation - posX2.current}px, 0px, 0px)`
 
     }
@@ -65,24 +90,32 @@ const Slider = () => {
     const swipeEnd = () => {
 
         posFinal.current = posInit.current - posX1.current
-        if (Math.abs(posFinal.current) > posThreshold) {
-            if (posInit.current < posX1.current) {
-                slideIndex.current--
-            } else if (posInit.current > posX1.current) {
-                slideIndex.current++
-            }
-        }
-        if (posInit.current !== posX1.current) {
-            slide();
-        }
+
+
         document.removeEventListener('touchmove', swipeAction);
         document.removeEventListener('touchend', swipeEnd);
+
+        if (allowSwipe.current) {
+
+
+            if (Math.abs(posFinal.current) > posThreshold) {
+                if (posInit.current < posX1.current) {
+                    slideIndex.current--
+                } else if (posInit.current > posX1.current) {
+                    slideIndex.current++
+                }
+            }
+
+            if (posInit.current !== posX1.current) {
+                slide();
+            }
+        }
     }
 
     const addition = useRef(false)
     const onAddition = () => {
         console.log(addition.current)
-        addition.current= !addition.current
+        addition.current = !addition.current
     }
 
 
